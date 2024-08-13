@@ -301,4 +301,42 @@ The accumulated fact table for the player data mart, named `FactPlayersAcc` in t
 - **[yellowCardCount]:** Number of yellow cards.
 - **[playMinute]:** Number of minutes played.
 
+### Club Data Mart
 
+#### Transactional Fact Table :
+This fact table, named `fact_club_transactional` in the `fact` schema, records events that occurred during a game for a club. The data is sourced from the `games` table in the STAGING AREA. Below are the fields and their descriptions:
+
+- **time_key**: Key to the time dimension.
+- **competition_key**: Key to the competition dimension.
+- **game_key**: Key to the game dimension.
+- **club_key**: Key to the club dimension.
+- **type**: Indicates whether the team was home or away.
+- **goals_scored**: Number of goals scored by the club.
+- **goals_conceded**: Number of goals conceded by the club.
+
+#### Daily Fact Table :
+This fact table, named `FactClubDaily` in the `fact` schema, captures daily information for each club. The data is sourced from the `games` table in the STAGING AREA. Below are the fields and their descriptions:
+
+- **time_key**: Key to the time dimension.
+- **competition_key**: Key to the competition dimension.
+- **club_key**: Key to the club dimension.
+- **winCount**: Number of wins.
+- **loseCount**: Number of losses.
+- **drawCount**: Number of draws.
+- **totalPlays**: Total number of games played.
+- **awayPlays**: Number of away games.
+- **homePlays**: Number of home games.
+- **goalCount**: Number of goals scored.
+
+#### Accumulated Fact Table :
+This fact table, named `FactClubAcc` in the `fact` schema, captures the most recent daily information for each club. The data is sourced from the `games` table in the STAGING AREA. Below are the fields and their descriptions:
+
+- **competition_key**: Key to the competition dimension.
+- **club_key**: Key to the club dimension.
+- **winCount**: Number of wins.
+- **loseCount**: Number of losses.
+- **drawCount**: Number of draws.
+- **totalPlays**: Total number of games played.
+- **awayPlays**: Number of away games.
+- **homePlays**: Number of home games.
+- **goalCount**: Number of goals scored.
