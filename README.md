@@ -340,3 +340,35 @@ This fact table, named `FactClubAcc` in the `fact` schema, captures the most rec
 - **awayPlays**: Number of away games.
 - **homePlays**: Number of home games.
 - **goalCount**: Number of goals scored.
+
+### Competition Data Mart
+
+#### Transactional Fact Table :
+This fact table, named `FactCompetitionTransactional` in the `fact` schema, captures events that occurred during a game within a competition. The data is sourced from the join between the `games` and `games_events` tables in the STAGING AREA. Below are the fields and their descriptions:
+
+- **time_key**: Key to the time dimension.
+- **competition_key**: Key to the competition dimension.
+- **game_key**: Key to the game dimension.
+- **NumberSubstitutions**: Number of substitutions made.
+- **TotalNumberEvents**: Total number of events.
+
+#### Daily Fact Table :
+This fact table, named `FactCompetitionDaily` in the `fact` schema, provides daily information for each competition. The data is sourced from the join between the `games` and `appearances` tables in the STAGING AREA. Below are the fields and their descriptions:
+
+- **time_key**: Key to the time dimension.
+- **competition_key**: Key to the competition dimension.
+- **goalCount**: Number of goals scored.
+- **redCardCount**: Number of red cards issued.
+- **yellowCardCount**: Number of yellow cards issued.
+- **attendance**: Number of attendees.
+- **playCount**: Number of games played.
+
+#### Accumulated Fact Table :
+This fact table, named `FactCompetitionAcc` in the `fact` schema, provides the most recent daily information for each competition. The data is sourced from the join between the `games` and `appearances` tables in the STAGING AREA. Below are the fields and their descriptions:
+
+- **competition_key**: Key to the competition dimension.
+- **goalCount**: Number of goals scored.
+- **redCardCount**: Number of red cards issued.
+- **yellowCardCount**: Number of yellow cards issued.
+- **attendance**: Number of attendees.
+- **playCount**: Number of games played.
