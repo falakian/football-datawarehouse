@@ -260,3 +260,45 @@ This dimension, created with a table named `dimGames` in the `dim` schema, store
 
 - **[TypeDescription]:** Description of the relationship (VARCHAR(20)).  
   This field is populated from the `PLAYERS` table in the `STAGING AREA` through a GROUP BY on the `POSITION` field.
+
+
+### Player Data Mart Tables
+
+#### Transactional Fact Table:
+The transactional fact table for the player data mart, named `FactPlayersTransactional` in the `fact` schema, captures events that occur during a game involving players, such as substitutions, cards, goals, shots, and assists. The data for this fact table is derived from a join between the `games` and `events_games` tables located in the `STAGING AREA`. The fields and their descriptions are as follows:
+
+- **[key_player]:** Player dimension key.
+- **[key_time]:** Time dimension key.
+- **[key_competition]:** Competition dimension key.
+- **[key_club]:** Club dimension key.
+- **[key_game]:** Game dimension key.
+- **[type]:** Type of event that occurred.
+- **[minute]:** Minute of the game when the event occurred.
+
+#### Daily Fact Table:
+The daily fact table for the player data mart, named `FactPlayersDaily` in the `fact` schema, records daily statistics for players, such as the number of goals, assists, red cards, yellow cards, and minutes played. This data is obtained from a join between the `appearances` and `games` tables in the `STAGING AREA`. The fields and their descriptions are as follows:
+
+- **[Player_key]:** Player dimension key.
+- **[Time_key]:** Date dimension key.
+- **[Competition_key]:** Competition dimension key.
+- **[Club_key]:** Club dimension key.
+- **[goalCount]:** Number of goals scored.
+- **[assistCount]:** Number of assists.
+- **[redCardCount]:** Number of red cards.
+- **[yellowCardCount]:** Number of yellow cards.
+- **[playMinute]:** Number of minutes played.
+
+#### Accumulated Fact Table:
+The accumulated fact table for the player data mart, named `FactPlayersAcc` in the `fact` schema, aggregates daily statistics for players over time, including the number of goals, assists, red cards, yellow cards, and minutes played. This data is also derived from a join between the `appearances` and `games` tables in the `STAGING AREA`. The fields and their descriptions are as follows:
+
+- **[Player_key]:** Player dimension key.
+- **[Time_key]:** Date dimension key.
+- **[Competition_key]:** Competition dimension key.
+- **[Club_key]:** Club dimension key.
+- **[goalCount]:** Number of goals scored.
+- **[assistCount]:** Number of assists.
+- **[redCardCount]:** Number of red cards.
+- **[yellowCardCount]:** Number of yellow cards.
+- **[playMinute]:** Number of minutes played.
+
+
