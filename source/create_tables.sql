@@ -1,5 +1,5 @@
-create database football
-use football
+create database source
+use source
 
 drop table players
 CREATE TABLE players (
